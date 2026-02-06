@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Event Wi-Fi</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 30px;
+}
+.box {
+  max-width: 400px;
+  margin: auto;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+}
+.password {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+.note {
+  font-size: 13px;
+  color: #666;
+  margin-top: 15px;
+}
+button {
+  font-size: 16px;
+  padding: 8px 16px;
+  margin-top: 10px;
+}
+</style>
+</head>
+<body>
+
+<h2>📶 Event Wi-Fi</h2>
+
+<div class="box">
+  <p><strong>Network Name</strong></p>
+  <p>Venue_WiFi</p>
+
+  <p><strong>Password</strong></p>
+  <div class="password" id="pwd">Loading...</div>
+
+  <button onclick="copyPassword()">Copy Password</button>
+
+  <div class="note">
+    Wi-Fi password changes daily.<br>
+    Valid from 5 Feb to 15 Feb.
+  </div>
+</div>
+
+<script>
+const passwords = {
+  "0205": "05022026",
+  "0206": "06022026",
+  "0207": "07022026",
+  "0208": "08022026",
+  "0209": "09022026",
+  "0210": "10022026",
+  "0211": "11022026",
+  "0212": "12022026",
+  "0213": "13022026",
+  "0214": "14022026",
+  "0215": "15022026"
+};
+
+const today = new Date();
+const key =
+  String(today.getMonth() + 1).padStart(2, "0") +
+  String(today.getDate()).padStart(2, "0");
+
+const pwd = passwords[key];
+
+document.getElementById("pwd").innerText =
+  pwd ? pwd : "Wi-Fi not available today";
+
+function copyPassword() {
+  navigator.clipboard.writeText(
+    document.getElementById("pwd").innerText
+  );
+  alert("Wi-Fi password copied");
+}
+</script>
+
+</body>
+</html>
